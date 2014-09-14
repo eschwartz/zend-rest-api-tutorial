@@ -1,0 +1,16 @@
+{
+	"name": "eschwartz/zend-rest-api-tutorial",
+	"description": "Zend REST API Tutorial application",
+	"keywords": [
+		"framework",
+		"zf2"
+	],
+	"homepage": "http://framework.zend.com/",
+	"require": {
+		"php": ">=5.3.3",
+		"zendframework/zendframework": "2.3.*",
+		"doctrine/doctrine-orm-module": "0.7.*",
+		"zendframework/zend-developer-tools": "dev-master",
+		"jms/serializer": "0.*"
+	}
+}
