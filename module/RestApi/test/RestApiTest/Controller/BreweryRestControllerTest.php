@@ -43,6 +43,7 @@ class BreweryRestControllerTest extends AbstractHttpControllerTestCase {
 			),
 			array(), '', false
 		);
+		$this->sm->setService('doctrine.entitymanager.orm_default', $entityManagerMock);
 
 		$breweryRepoMock = $this->getMockBuilder('\Doctrine\ORM\EntityRepository')
 			->disableOriginalConstructor()
@@ -50,7 +51,8 @@ class BreweryRestControllerTest extends AbstractHttpControllerTestCase {
 
 		// Mock the entity manager to return
 		// a mock brewery repo
-		$entityManagerMock->expects($this->once())
+		$entityManagerMock
+			->expects($this->once())
 			->method('getRepository')
 			->with('RestApi\Model\Brewery')
 			->will($this->returnValue($breweryRepoMock));
@@ -71,6 +73,17 @@ class BreweryRestControllerTest extends AbstractHttpControllerTestCase {
 		$harrietBrewing->setCity('Minneapolis, MN');
 		$harrietBrewing->setWebsite('www.harrietbrewing.com');
 
+
+		// Mock the brewery repo to return our stub data
+		$breweryRepoMock
+			->expects($this->once())
+			->method('findAll')
+			->will($this->returnValue(array(
+				$summitBrewery,
+				$harrietBrewing
+			)));
+
+
 		// Make GET request to /breweries/
 		$this->dispatch('/breweries/', 'GET');
 		$response = $this->getResponse()->getContent();
@@ -82,13 +95,11 @@ class BreweryRestControllerTest extends AbstractHttpControllerTestCase {
 		$this->assertJsonStringEqualsJsonString(json_encode(
 			array(
 				array(
-					'id' => $summitBrewery->getId(),
 					'name' => 'Summit Brewery',
 					'city' => 'St. Paul, MN',
 					'website' => 'www.summitbrewery.com',
 					'beers' => array(
 						array(
-							'id' => $summitEPA->getId(),
 							'name' => 'Summit EPA',
 							'style' => 'EPA',
 							'ibu' => 45
@@ -96,7 +107,6 @@ class BreweryRestControllerTest extends AbstractHttpControllerTestCase {
 					)
 				),
 				array(
-					'id' => $harrietBrewing->getId(),
 					'name' => 'Harriet Brewing',
 					'city' => 'Minneapolis, MN',
 					'website' => 'www.harrietbrewing.com'

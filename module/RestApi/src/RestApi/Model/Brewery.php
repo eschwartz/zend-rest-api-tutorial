@@ -134,6 +134,10 @@ class Brewery {
 	 * @param Beer $beer
 	 */
 	public function addBeer(Beer $beer) {
+		if (!$this->beers) {
+			$this->beers = [];
+		}
+
 		$beer->setBrewery($this);
 
 		array_push($this->beers, $beer);
