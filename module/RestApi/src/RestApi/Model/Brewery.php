@@ -51,7 +51,7 @@ class Brewery {
 	private $website;
 
 	/**
-	 * @var array
+	 * @var array.<Beer>
 	 *
 	 * @ORM\OneToMany(targetEntity="RestApi\Model\Beer", mappedBy="brewery", fetch="EAGER")
 	 */
@@ -128,6 +128,22 @@ class Brewery {
 	 */
 	public function getWebsite() {
 		return $this->website;
+	}
+
+	/**
+	 * @param Beer $beer
+	 */
+	public function addBeer(Beer $beer) {
+		$beer->setBrewery($this);
+
+		array_push($this->beers, $beer);
+	}
+
+	/**
+	 * @return array.<Beer>
+	 */
+	public function getBeers() {
+		return $this->beers;
 	}
 
 }
