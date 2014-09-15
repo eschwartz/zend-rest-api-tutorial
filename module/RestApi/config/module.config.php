@@ -2,6 +2,7 @@
 return array(
 	'controllers' => array(
 		'invokables' => array(
+			'RestApi\Controller\BreweryRest' => 'RestApi\Controller\BreweryRestController'
 		)
 	),
 	'view_manager' => array(
@@ -11,7 +12,17 @@ return array(
 	),
 	'router' => array(
 		'routes' => array(
+			'brewery' => array(
+				'type' => 'segment',
+				'options' => array(
+					'route' => '/breweries/',
+					'defaults' => array(
+						'controller' => 'RestApi\Controller\BreweryRest'
+					),
+				),
+			)
 		),
+	),
 	'service_manager' => array(
 		'factories' => array(
 			'serializer' => function () {
