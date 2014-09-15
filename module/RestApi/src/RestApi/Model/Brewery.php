@@ -42,6 +42,13 @@ class Brewery {
 	 */
 	private $website;
 
+	/**
+	 * @var array
+	 *
+	 * @ORM\OneToMany(targetEntity="RestApi\Model\Beer", mappedBy="brewery", fetch="EAGER")
+	 */
+	private $beers;
+
 
 	/**
 	 * Get id
