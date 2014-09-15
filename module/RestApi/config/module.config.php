@@ -4,6 +4,11 @@ return array(
 		'invokables' => array(
 		)
 	),
+	'view_manager' => array(
+		'strategies' => array(
+			'ViewJsonStrategy'
+		)
+	),
 	'router' => array(
 		'routes' => array(
 		),
