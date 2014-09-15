@@ -3,6 +3,7 @@
 namespace RestApi\Model;
 
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation as JMS;
 
 /**
  * Beer
@@ -14,6 +15,8 @@ class Beer {
 	/**
 	 * @var integer
 	 *
+	 * @JMS\Type("integer")
+	 *
 	 * @ORM\Column(name="id", type="integer", nullable=false)
 	 * @ORM\Id
 	 * @ORM\GeneratedValue(strategy="IDENTITY")
@@ -23,12 +26,16 @@ class Beer {
 	/**
 	 * @var string
 	 *
+	 * @JMS\Type("string")
+	 *
 	 * @ORM\Column(name="name", type="string", length=45, nullable=true)
 	 */
 	private $name;
 
 	/**
 	 * @var string
+	 *
+	 * @JMS\Type("string")
 	 *
 	 * @ORM\Column(name="style", type="string", length=45, nullable=true)
 	 */
@@ -37,12 +44,15 @@ class Beer {
 	/**
 	 * @var integer
 	 *
+	 *
 	 * @ORM\Column(name="ibu", type="integer", nullable=true)
 	 */
 	private $ibu;
 
 	/**
 	 * @var \RestApi\Model\Brewery
+	 *
+	 * @JMS\Type("ArrayCollection<RestApi\Model\Brewery>")
 	 *
 	 * @ORM\ManyToOne(targetEntity="RestApi\Model\Brewery")
 	 * @ORM\JoinColumns({

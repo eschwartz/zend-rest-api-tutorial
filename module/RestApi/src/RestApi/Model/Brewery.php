@@ -15,6 +15,8 @@ class Brewery {
 	/**
 	 * @var integer
 	 *
+	 * JMS\Type("integer")
+	 *
 	 * @ORM\Column(name="id", type="integer", nullable=false)
 	 * @ORM\Id
 	 * @ORM\GeneratedValue(strategy="IDENTITY")
@@ -24,6 +26,8 @@ class Brewery {
 	/**
 	 * @var string
 	 *
+	 * @JMS\Type("string")
+	 *
 	 * @ORM\Column(name="name", type="string", length=45, nullable=true)
 	 */
 	private $name;
@@ -31,12 +35,16 @@ class Brewery {
 	/**
 	 * @var string
 	 *
+	 * @JMS\Type("string")
+	 *
 	 * @ORM\Column(name="city", type="string", length=45, nullable=true)
 	 */
 	private $city;
 
 	/**
-	 * @var stringå
+	 * @var string
+	 *
+	 * @JMS\Type("string")
 	 *
 	 * @ORM\Column(name="website", type="string", length=45, nullable=true)
 	 */
