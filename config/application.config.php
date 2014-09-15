@@ -5,9 +5,6 @@ return array(
 		'ZendDeveloperTools',
 		'DoctrineModule',
 		'DoctrineORMModule',
-		'ZF\ApiProblem',
-		'ZF\ContentNegotiation',
-		'Application',
 		'RestApi',
 	),
 
